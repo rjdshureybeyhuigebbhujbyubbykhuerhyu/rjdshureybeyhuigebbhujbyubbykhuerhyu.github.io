@@ -1,0 +1,21 @@
+<body>
+  <textarea id="editor" placeholder="Start typing..."></textarea>
+  <button id="saveBtn">Save File</button>
+</body>
+<script>
+  const editor = document.getElementById('editor');
+  const saveBtn = document.getElementById('saveBtn');
+
+  saveBtn.addEventListener('click', () => {
+      const textData = editor.value;
+      const blob = new Blob([textData], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+    
+      const link = document.createElement('a');
+      link.download = 'my-note.txt';
+      link.href = url;
+      link.click();
+    
+      URL.revokeObjectURL(url);
+  });
+</script>
